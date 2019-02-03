@@ -2,6 +2,7 @@ package com.shpig.graphlib;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Created by Cody on 3/02/2019.
@@ -9,18 +10,25 @@ import java.util.Arrays;
 public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<N, T> {
 	
 	private ArrayList<Vertex> list;
+	private HashMap<N, Vertex> mapping;
 	
 	public AdjacencyList() {
 		list = new ArrayList<Vertex>();
+		mapping = new HashMap<N, Vertex>();
 	}
 	
 	public AdjacencyList(ArrayList<Vertex> list) {
 		this.list = list;
+		mapping = new HashMap<N, Vertex>();
+		for (Vertex v : list) {
+			mapping.put(v.getName(), v);
+		}
 	}
 
     @Override
     public void addVertex(N name, T value) {
     	list.add(new Vertex(name, value));
+    	mapping.put(name, new Vertex(name, value));
     }
 
     @Override
@@ -33,6 +41,7 @@ public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<
        		if (v.getName().equals(name)) {
        			value = v.getValue();
        			list.remove(v);
+       			mapping.remove(name);
        			return value;
        		}
        	}
@@ -41,12 +50,7 @@ public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<
 
     @Override
     public com.shpig.graphlib.Vertex<N, T> getVertex(N name) {
-    	for (Vertex v : list) {
-       		if (v.getName().equals(name)) {
-       			return v;
-       		}
-       	}
-    	return null;
+    	return mapping.get(name);
     }
 
 
