@@ -64,6 +64,11 @@ public class LinkedGraph<N extends Comparable<N>, T> implements DirectedGraph<N,
     }
 
     @Override
+    public T setValue(T value) {
+        return null;
+    }
+
+    @Override
     public N getName() {
         return null;
     }
@@ -74,7 +79,7 @@ public class LinkedGraph<N extends Comparable<N>, T> implements DirectedGraph<N,
     }
 
     @Override
-    public int setEdgeValue(N end) {
+    public int setEdgeValue(N end, int weight) {
         return 0;
     }
 
