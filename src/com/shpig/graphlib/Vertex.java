@@ -5,6 +5,12 @@ package com.shpig.graphlib;
  */
 public interface Vertex<N extends Comparable<N>, T> {
 	
+	/**
+	 * Checks if provided argument is a neighbouring vertex
+	 * 
+	 * @param name	name of vertex to check for
+	 * @return true or false
+	 */
 	boolean isNeighbourOf(N name);
 
     /**
@@ -49,8 +55,18 @@ public interface Vertex<N extends Comparable<N>, T> {
      */
     int getEdgeValue(N end);
     
+    /**
+     * Get the weight of the edge starting at this node and finishing at "end",
+     * this method returns the lightest edge it finds
+     * @param end the end point of the target edge
+     */
     int getSmallestEdgeValue(N end);
     
+    /**
+     * Get the weight of the edge starting at this node and finishing at "end",
+     * this method returns the heaviest edge it finds
+     * @param end the end point of the target edge
+     */
     int getBiggestEdgeValue(N end);
 
     /**
@@ -68,6 +84,10 @@ public interface Vertex<N extends Comparable<N>, T> {
      */
     void addEdge(Vertex<N, T> end, int weight);
     
+    /**
+     * Remove an edge connecting this node and the node specified by "end"
+     * @param end the node which the edge connects to
+     */
     void removeEdge(N name);
 
     /**

@@ -64,9 +64,16 @@ public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<
     		adj_edges = new int[0];
     	}
     	
-    	public Vertex(Vertex v) {
-    		name = v.getName();
+    	public Vertex(Vertex v, N name) {
+    		this.name = name;
     		value = v.getValue();
+    		adj_vertices =  v.getNeighbors();
+    		adj_edges = v.getEdgeValues();
+    	}
+    	
+    	public Vertex(Vertex v, T value) {
+    		name = v.getName();
+    		this.value = value;
     		adj_vertices =  v.getNeighbors();
     		adj_edges = v.getEdgeValues();
     	}
@@ -153,11 +160,14 @@ public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<
 
         @Override
         public void addEdge(com.shpig.graphlib.Vertex<N, T> end, int weight) {
-        	adj_vertices = Arrays.copyOf(adj_vertices, adj_vertices.length+1);
-        	adj_vertices[adj_vertices.length-1] = end;
-        	
-        	adj_edges = Arrays.copyOf(adj_edges, adj_edges.length+1);
-        	adj_edges[adj_edges.length-1] = weight;
+        	if (end.getGraph() == this.getGraph()) {
+            	adj_vertices = Arrays.copyOf(adj_vertices, adj_vertices.length+1);
+            	adj_vertices[adj_vertices.length-1] = end;
+            	
+            	adj_edges = Arrays.copyOf(adj_edges, adj_edges.length+1);
+            	adj_edges[adj_edges.length-1] = weight;
+        	}
+
         }
         
         @Override
