@@ -63,8 +63,8 @@ public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<
     	private int[] adj_edges;
     	
     	public Vertex(N name, T value) {
-    		name = this.name;
-    		value = this.value;
+    		this.name = name;
+    		this.value = value;
     		adj_vertices = new com.shpig.graphlib.Vertex[0]; 
     		adj_edges = new int[0];
     	}
