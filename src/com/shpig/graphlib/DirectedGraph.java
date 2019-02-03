@@ -1,5 +1,8 @@
 package com.shpig.graphlib;
 
+import java.util.HashMap;
+import java.util.function.Consumer;
+
 /**
  * Created by Cody on 3/02/2019.
  */
@@ -91,5 +94,28 @@ public interface DirectedGraph<N extends Comparable<N>, T> {
      */
     default void addEdge(N start, N end) {
         addEdge(start, end, 0);
+    }
+
+    /**
+     * WIP
+     */
+    default void simpleTraversal(TraversalStrategy<Vertex<N, T>> t, Consumer<Vertex<N, T>> c, N start) {
+        HashMap<N, Boolean> checked = new HashMap<>();
+        Vertex<N, T> next = getVertex(start);
+        checked.put(start, true);
+        for (Vertex<N, T> v : next.getNeighbors()) {
+            t.add(v);
+        }
+        c.accept(next);
+        while (!t.isEmpty()) {
+            next = t.remove();
+            for (Vertex<N, T> v : next.getNeighbors()) {
+                if (!checked.containsKey(v.getName())) {
+                    t.add(v);
+                    checked.put(v.getName(), true);
+                }
+            }
+            c.accept(next);
+        }
     }
 }

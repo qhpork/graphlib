@@ -17,7 +17,7 @@ public interface Vertex<N extends Comparable<N>, T> {
      * Get all the neighbouring nodes of this node
      * @return an array of all the nodes this node is connected to
      */
-    Vertex[] getNeighbors();
+    Vertex<N, T>[] getNeighbors();
 
     /**
      * Gets all the weights of the edges leaving this node,
@@ -85,8 +85,9 @@ public interface Vertex<N extends Comparable<N>, T> {
     void addEdge(Vertex<N, T> end, int weight);
     
     /**
-     * Remove an edge connecting this node and the node specified by "end"
-     * @param end the node which the edge connects to
+     * Remove an edge connecting this node and the node specified by "end",
+     * if it exists
+     * @param name the node which the edge connects to
      */
     void removeEdge(N name);
 
