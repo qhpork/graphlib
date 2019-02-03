@@ -27,8 +27,9 @@ public class AdjacencyList<N extends Comparable<N>, T> implements DirectedGraph<
 
     @Override
     public void addVertex(N name, T value) {
-    	list.add(new Vertex(name, value));
-    	mapping.put(name, new Vertex(name, value));
+    	Vertex v = new Vertex(name, value);
+    	list.add(v);
+    	mapping.put(name, v);
     }
 
     @Override
