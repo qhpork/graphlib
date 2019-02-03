@@ -7,4 +7,6 @@ public interface Node<N extends Comparable<N>, T> {
     Node[] getNeighbors();
     T getValue();
     N getName();
+    void getEdgeValue(N end);
+    int setEdgeValue(N end);
 }
