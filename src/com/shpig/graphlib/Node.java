@@ -5,6 +5,7 @@ package com.shpig.graphlib;
  */
 public interface Node<N extends Comparable<N>, T> {
     Node[] getNeighbors();
+    int[] getEdgeValues();
     T getValue();
     N getName();
     void getEdgeValue(N end);
@@ -15,5 +16,11 @@ public interface Node<N extends Comparable<N>, T> {
 
     default void addEdge(Node<N, T> end) {
         addEdge(end, 0);
+    }
+    default void addEdge(N end) {
+        addEdge(end, 0);
+    }
+    default void addEdge(N end, int weight) {
+        addEdge(getGraph().getVertex(end), weight);
     }
 }

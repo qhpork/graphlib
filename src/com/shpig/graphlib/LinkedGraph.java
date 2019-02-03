@@ -54,6 +54,11 @@ public class LinkedGraph<N extends Comparable<N>, T> implements DirectedGraph<N,
     }
 
     @Override
+    public int[] getEdgeValues() {
+        return new int[0];
+    }
+
+    @Override
     public T getValue() {
         return null;
     }
