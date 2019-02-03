@@ -4,6 +4,8 @@ package com.shpig.graphlib;
  * Created by Cody on 3/02/2019.
  */
 public interface Vertex<N extends Comparable<N>, T> {
+	
+	boolean isNeighbourOf(N name);
 
     /**
      * Get all the neighbouring nodes of this node
@@ -41,10 +43,15 @@ public interface Vertex<N extends Comparable<N>, T> {
     N getName();
 
     /**
-     * Get the weight of the edge starting at this node and finishing at "end"
+     * Get the weight of the edge starting at this node and finishing at "end",
+     * this method returns the first edge it finds
      * @param end the end point of the target edge
      */
     int getEdgeValue(N end);
+    
+    int getSmallestEdgeValue(N end);
+    
+    int getBiggestEdgeValue(N end);
 
     /**
      * Set the weight of the edge starting at this node and finishing at "end"
@@ -60,6 +67,8 @@ public interface Vertex<N extends Comparable<N>, T> {
      * @param weight the weight of the new edge
      */
     void addEdge(Vertex<N, T> end, int weight);
+    
+    void removeEdge(N name);
 
     /**
      * Get the graph this node belongs to
