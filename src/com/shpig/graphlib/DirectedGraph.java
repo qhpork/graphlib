@@ -28,7 +28,9 @@ public interface DirectedGraph<N extends Comparable<N>, T> {
      * @param end	the other vertex for the edge to attach to
      * @param weight	the weight of the edge added
      */
-    void addEdge(N start, N end, int weight);
+    default void addEdge(N start, N end, int weight) {
+        getVertex(start).addEdge(end, weight);
+    }
     
     /**
      * Find a specific vertex given its name, the vertex is returned
@@ -44,7 +46,9 @@ public interface DirectedGraph<N extends Comparable<N>, T> {
      * @param label name of the required vertex
      * @return	the value of the vertex
      */
-    T getVertexValue(N label);
+    default T getVertexValue(N label) {
+        return getVertex(label).getValue();
+    }
     
     /**
      * Set the value of a vertex
@@ -53,7 +57,9 @@ public interface DirectedGraph<N extends Comparable<N>, T> {
      * @param value	value to set the vertex as
      * @return the previous value is returned
      */
-    T setVertexValue(N label, T value);
+    default T setVertexValue(N label, T value) {
+        return getVertex(label).setValue(value);
+    }
 
     /**
      * Get the value of a edge given the two contacting vertices
@@ -61,17 +67,21 @@ public interface DirectedGraph<N extends Comparable<N>, T> {
      * @param start	the first vertex attached to the edge 
      * @param end	the other vertex attached to the edge
      */
-    int getEdgeValue(N start, N end);
+    default int getEdgeValue(N start, N end) {
+        return getVertex(start).getEdgeValue(end);
+    }
     
     /**
      * Set the value of a edge given the two contacting vertices
      * 
      * @param start	the first vertex attached to the edge 
      * @param end	the other vertex attached to the edge
+     * @param weight the new weight
      * @return the previous value is returned
      */
-    int setEdgeValue(N start, N end);
-
+    default int setEdgeValue(N start, N end, int weight) {
+        return getVertex(start).setEdgeValue(end, weight);
+    }
     
     /**
      * Add an edge between two pre-existing vertices, weight is default to 0

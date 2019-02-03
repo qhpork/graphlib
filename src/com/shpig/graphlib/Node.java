@@ -44,7 +44,7 @@ public interface Node<N extends Comparable<N>, T> {
      * Get the weight of the edge starting at this node and finishing at "end"
      * @param end the end point of the target edge
      */
-    void getEdgeValue(N end);
+    int getEdgeValue(N end);
 
     /**
      * Set the weight of the edge starting at this node and finishing at "end"
