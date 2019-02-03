@@ -3,13 +3,13 @@ package com.shpig.graphlib;
 /**
  * Created by Cody on 3/02/2019.
  */
-public interface Node<N extends Comparable<N>, T> {
+public interface Vertex<N extends Comparable<N>, T> {
 
     /**
      * Get all the neighbouring nodes of this node
      * @return an array of all the nodes this node is connected to
      */
-    Node[] getNeighbors();
+    Vertex[] getNeighbors();
 
     /**
      * Gets all the weights of the edges leaving this node,
@@ -59,7 +59,7 @@ public interface Node<N extends Comparable<N>, T> {
      * @param end the node to connect the edge to
      * @param weight the weight of the new edge
      */
-    void addEdge(Node<N, T> end, int weight);
+    void addEdge(Vertex<N, T> end, int weight);
 
     /**
      * Get the graph this node belongs to
@@ -72,7 +72,7 @@ public interface Node<N extends Comparable<N>, T> {
      * with a weight of 0
      * @param end the node to connect the edge to
      */
-    default void addEdge(Node<N, T> end) {
+    default void addEdge(Vertex<N, T> end) {
         addEdge(end, 0);
     }
 

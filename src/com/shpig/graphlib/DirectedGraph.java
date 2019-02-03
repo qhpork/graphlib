@@ -38,7 +38,7 @@ public interface DirectedGraph<N extends Comparable<N>, T> {
      * @param label	name of the vertex to be found
      * @return
      */
-    Node<N, T> getVertex(N label);
+    Vertex<N, T> getVertex(N label);
     
     /**
      * Get the value of a vertex given its name
