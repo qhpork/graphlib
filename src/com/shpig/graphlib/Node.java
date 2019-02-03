@@ -9,4 +9,11 @@ public interface Node<N extends Comparable<N>, T> {
     N getName();
     void getEdgeValue(N end);
     int setEdgeValue(N end);
+    void addEdge(Node<N, T> end, int weight);
+    DirectedGraph<N, T> getGraph();
+
+
+    default void addEdge(Node<N, T> end) {
+        addEdge(end, 0);
+    }
 }
